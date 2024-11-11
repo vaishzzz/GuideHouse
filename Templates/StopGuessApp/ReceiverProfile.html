@@ -1,0 +1,122 @@
+{% extends "StopGuessApp/baseReceiver.html" %}
+{% load static %}
+
+{% block title %} Receiver Profile{% endblock %}
+
+{% block Bodycss %}user_body{% endblock %}
+
+{% block content %}
+    <div id="wrapper">
+        <div id="menu">
+            <ul>
+                <li class="current_page_item"><a href="/StopGuessApp/ReceiverHome">Data Receiver</a>
+                </li>
+                <li><a href="/StopGuessApp/ReceiverLogout/">Logout</a></li>
+            </ul>
+        </div>
+        <!-- end #menu -->
+        <div id="header">
+            <div id="logo">
+                <h1><img src="{% static "Images/Key2.gif" %}" width="700" height="50"></img></h1>
+            </div>
+            <div id="search">
+                <form method="get" action="">
+                    <fieldset>
+                        <input type="text" name="s" id="search-text" size="15" value="enter keywords here..."/>
+                        <input type="submit" id="search-submit" value="GO"/>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div id="splash">&nbsp;</div>
+        <!-- end #header -->
+        <div id="page">
+            <div id="page-bgtop">
+                <div id="page-bgbtm">
+                    <div id="content">
+                        <div class="post">
+                            {% if request.session %}
+                                <h2 class="title"><a href="#">Welcome <b
+                                        style="text-transform: capitalize">{{ sessionUser }}</b> </a></h2>
+                            {% endif %}
+                            <div class="entry">
+                                <table width="550" height="350" border="1.5" cellpadding="0" cellspacing="0" style="border-collapse: collapse;  margin:10px 10px 10px 10px; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:14px;">
+                                    {% if askQuery %}
+                                        {% for User in askQuery %}
+                                        <tr>
+                                            <td rowspan="8" ><div style="margin:10px 13px 10px 13px;">
+                                                <input  name="image" type="image" src="{{ User.ProfileImg }}" style="width:150px; height:150px;" /></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="175" valign="middle" height="50" style="color: #2c83b0;"><div align="left" style="margin-left:20px;"><b >Receiver Name</b></div></td>
+                                            <td width="175" valign="middle" height="50" style="color:#000000;"><div align="left" style="margin-left:20px;">{{ User.Name }}</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="175" valign="middle" height="50" style="color: #2c83b0;"><div align="left" style="margin-left:20px;"><b>Email Address</b></div></td>
+                                            <td width="175" valign="middle" height="50" style="color:#000000;"><div align="left" style="margin-left:20px;">{{ User.Email }}</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="175" valign="middle" height="50" style="color: #2c83b0;"><div align="left" style="margin-left:20px;"><strong >Mobile Number</strong></div></td>
+                                            <td width="175" valign="middle" height="50"><div align="left" style="margin-left:20px;">{{ User.MobileNo }}</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="175" valign="middle" height="50" style="color: #2c83b0;"><div align="left" style="margin-left:20px;"><strong>Date Of Birth</strong></div></td>
+                                            <td width="175" valign="middle" height="50"><div align="left" style="margin-left:20px;">{{ User.Dob|date:"M d, Y" }}</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="175" valign="middle" height="50" style="color: #2c83b0;"><div align="left " style="margin-left:20px;"><strong>Address</strong></div></td>
+                                            <td width="175" valign="middle" height="50"><div align="left" style="margin-left:20px;">{{ User.Address }}</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="175" valign="middle" height="50" style="color: #2c83b0;"><div align="left " style="margin-left:20px;"><strong>Location</strong></div></td>
+                                            <td width="175" valign="middle" height="50"><div align="left" style="margin-left:20px;">{{ User.Location }}</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="175" valign="middle" height="50" style="color: #2c83b0;"><div align="left " style="margin-left:20px;"><strong>Pincode</strong></div></td>
+                                            <td width="175" valign="middle" height="50"><div align="left" style="margin-left:20px;">{{ User.PinCode }}</div></td>
+                                        </tr>
+                                        {% endfor %}
+                                    {% endif %}
+                                </table>
+                                <p>&nbsp;</p>
+                                <p align="right"><a href="/StopGuessApp/ReceiverHome">Back</a></p>
+                            </div>
+                        </div>
+                        <div style="clear: both;">&nbsp;</div>
+                    </div>
+                    <!-- end #content -->
+                    <div id="sidebar">
+                        <ul>
+                            <li></li>
+                            <li>
+                                <h2>Menu</h2>
+                                <ul>
+                                    <li><a href="/StopGuessApp/ReceiverHome">Home</a></li>
+                                    <li><a href="/StopGuessApp/ReceiverViewFiles">View Files</a></li>
+                                    <li><a href="/StopGuessApp/ReceiverSearchFiles">Search Files</a></li>
+                                    <li><a href="/StopGuessApp/ReceiverReqPublicKey">Request Public Key</a></li>
+                                    <li><a href="/StopGuessApp/ReceiverResPublicKey">Public Key Response </a></li>
+                                    <li><a href="/StopGuessApp/ReceiverReqSecretKey">Request Secret Key</a></li>
+                                    <li><a href="/StopGuessApp/ReceiverResSecretKey">Secret Key Response</a></li>
+                                    <li><a href="/StopGuessApp/ReceiverDownloadFile">Download File </a></li>
+                                    <li><a href="/StopGuessApp/ReceiverLogout/">Logout</a></li>
+                                </ul>
+                            </li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <!-- end #sidebar -->
+                    <div style="clear: both;">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+        <!-- end #page -->
+    </div>
+    <div id="footer-wrapper">
+        <div id="footer">
+            <p>Copyright &copy; {% now "Y" %} StopGuess- A Framework for Public-key Authenticated Encryption with Keyword Search.</p>
+        </div>
+        <!-- end #footer -->
+    </div>
+{% endblock %}

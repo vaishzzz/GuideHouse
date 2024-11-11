@@ -1,0 +1,95 @@
+{% extends "StopGuessApp/baseCloud.html" %}
+{% load static %}
+
+{% block title %} Cloud Server Home{% endblock %}
+
+{% block Bodycss %} cloud_body {% endblock %}
+
+{% block content %}
+    <div id="wrapper">
+        <div id="menu">
+            <ul>
+                <li class="current_page_item"><a href="/StopGuessApp/CloudHome">Cloud Server</a>
+                </li>
+                <li><a href="/StopGuessApp/CloudLogout/">Logout</a></li>
+            </ul>
+        </div>
+        <!-- end #menu -->
+        <div id="header">
+            <div id="logo">
+                <h1><img src="{% static "Images/Key2.gif" %}" width="700" height="50"></img></h1>
+            </div>
+            <div id="search">
+                <form method="get" action="">
+                    <fieldset>
+                        <input type="text" name="s" id="search-text" size="15" value="enter keywords here..."/>
+                        <input type="submit" id="search-submit" value="GO"/>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div id="splash">&nbsp;</div>
+        <!-- end #header -->
+        <div id="page">
+            <div id="page-bgtop">
+                <div id="page-bgbtm">
+                    <div id="content">
+                        <div class="post">
+                            {% if request.session %}
+                                <h2 class="title"><a href="#">Welcome <b
+                                        style="text-transform: capitalize">Cloud Server</b> </a></h2>
+                            {% endif %}
+                            <div class="entry">
+                                <p>&nbsp;</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                StopGuess introduces an innovative framework aimed at enhancing the security of cryptographic systems through a sophisticated combination of public-key authentication, honey encryption, and efficient keyword search functionalities.
+                                This proposed system addresses the vulnerabilities associated with brute-force attacks and unauthorized access attempts, providing a robust defense mechanism against malicious actors attempting to guess encryption keys.
+                                StopGuess incorporates a robust public-key authentication mechanism to ensure secure communication between parties. This involves the use of asymmetric key pairs for sender and receiver identities, bolstering the overall security posture of the system.
+                                <br/><p>&nbsp;</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                The core of StopGuess lies in its integration of honey encryption, a cryptographic technique designed to deceive potential attackers attempting brute-force attacks.
+                                By generating plausible-looking but incorrect decryption results when an incorrect key is used, honey encryption adds a layer of confusion and complexity to the encryption process.
+                                StopGuess facilitates efficient keyword search capabilities, allowing authorized users to retrieve encrypted data related to specific keywords without compromising security.
+                                This feature is crucial for scenarios where quick and targeted access to encrypted information is necessary.
+                                <br/>
+                            </div>
+                        </div>
+                        <div style="clear: both;">&nbsp;</div>
+                    </div>
+                    <!-- end #content -->
+                    <div id="sidebar">
+                        <ul>
+                            <li></li>
+                            <li>
+                                <h2>Menu</h2>
+                                <ul>
+                                    <li><a href="/StopGuessApp/CloudHome">Home</a></li>
+                                    <li><a href="/StopGuessApp/CloudViewSenders">View Sender</a></li>
+                                    <li><a href="/StopGuessApp/CloudViewReceivers">View Receiver</a></li>
+                                    <li><a href="/StopGuessApp/CloudSenderFiles">Sender Files</a></li>
+                                    <li><a href="/StopGuessApp/CloudViewAttackers">View Attackers</a></li>
+                                    <li><a href="/StopGuessApp/CloudFilesWithPublicKey">Files With Public Key</a></li>
+                                    <li><a href="/StopGuessApp/CloudPublicKeyPermission">Public Key Permission</a></li>
+                                    <li><a href="/StopGuessApp/CloudShareSecretKey">Share Secret Key</a></li>
+                                    <li><a href="/StopGuessApp/CloudAttackersGraph">Attackers Graph</a></li>
+                                    <li><a href="/StopGuessApp/CloudComparisonGraph">Comparison Graph</a></li>
+                                    <li><a href="/StopGuessApp/CloudTrapdoorGraph">Trapdoor Graph</a></li>
+                                    
+                                    <li><a href="/StopGuessApp/CloudLogout/">Logout</a></li>
+                                </ul>
+                            </li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <!-- end #sidebar -->
+                    <div style="clear: both;">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+        <!-- end #page -->
+    </div>
+    <div id="footer-wrapper">
+        <div id="footer">
+            <p>Copyright &copy; {% now "Y" %} StopGuess- A Framework for Public-key Authenticated Encryption with Keyword Search.</p>
+        </div>
+        <!-- end #footer -->
+    </div>
+{% endblock %}

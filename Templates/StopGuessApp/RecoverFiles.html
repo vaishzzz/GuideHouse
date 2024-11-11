@@ -1,0 +1,102 @@
+{% extends "StopGuessApp/base.html" %}
+{% load static %}
+
+{% block title %}Recover Files{% endblock %}
+
+{% block Bodycss %}owner_body{% endblock %}
+
+{% block content %}
+    <style type="text/css">
+            <!--
+            .style1 {font-size: 24px}
+            .style2 {color: #712B77}
+            .style21 {font-size: 14px}
+            .style23 {color: #666666; font-weight: bold;}
+            .style24 {color: #3f3f3f}
+            .style30 {color: #3f3f3f; font-size: 24px; }
+            .style31 {font-size: 20px}
+            .style32 {font-size: 18px}
+            .style33 {font-size: 12px}
+            -->
+        </style>
+    <div id="wrapper">
+        <div id="menu">
+            <ul>
+                <li class="current_page_item"><a href="/StopGuessApp/SenderHome">Data Sender</a>
+                </li>
+                <li><a href="/StopGuessApp/SenderLogout/">Logout</a></li>
+            </ul>
+        </div>
+        <!-- end #menu -->
+        <div id="header">
+            <div id="logo">
+                <h1><img src="{% static "Images/Key2.gif" %}" width="700" height="50"></img></h1>
+            </div>
+            <div id="search">
+                <form method="get" action="">
+                    <fieldset>
+                        <input type="text" name="s" id="search-text" size="15" value="enter keywords here..."/>
+                        <input type="submit" id="search-submit" value="GO"/>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div id="splash">&nbsp;</div>
+        <!-- end #header -->
+        <div id="page">
+            <div id="page-bgtop">
+                <div id="page-bgbtm">
+                    <div id="content">
+                        <div class="post">
+                            <h2 class="title"><a href="#">Recover Status</a></h2>
+                            <div class="entry">
+                                <pre class="pages style10">
+                                    {% if messages %}
+                                        <div class="message_display">
+                                             {% for message in messages %}
+                                                  {% if message.tags %}
+                                                        <p align="center" class="{{ message.tags }}">{{ message }}</p>
+                                                        <script>
+                                                             alert("{{ message }}")
+                                                        </script>
+                                                  {% endif %}
+                                             {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </pre>
+                                <p align="right">&nbsp;</p>
+                                <p align="right"><a href="/StopGuessApp/SenderHome">Back</a></p>
+                            </div>
+                        </div>
+                        <div style="clear: both;">&nbsp;</div>
+                    </div>
+                    <!-- end #content -->
+                    <div id="sidebar">
+                        <ul>
+                            <li></li>
+                            <li>
+                                <h2>Menu</h2>
+                                <ul>
+                                    <li><a href="/StopGuessApp/SenderHome">Home</a></li>
+                                    <li><a href="/StopGuessApp/UploadFile">Upload Files</a></li>
+                                    <li><a href="/StopGuessApp/ViewFiles">View My Files</a></li>
+                                    <li><a href="/StopGuessApp/SenderLogout/">Logout</a></li>
+                                </ul>
+                            </li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <!-- end #sidebar -->
+                    <div style="clear: both;">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+        <!-- end #page -->
+    </div>
+    <div id="footer-wrapper">
+        <div id="footer">
+            <p>Copyright &copy; {% now "Y" %} StopGuess- A Framework for Public-key Authenticated Encryption with Keyword Search.</p>
+        </div>
+        <!-- end #footer -->
+    </div>
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends "StopGuessApp/baseCloud.html" %}
+{% load static %}
+
+{% load ctags %}
+
+{% block title %}Cloud Files With PublicKey{% endblock %}
+
+{% block Bodycss %} cloud_body {% endblock %}
+
+{% block content %}
+
+    <style type="text/css">
+            <!--
+            .style1 {font-size: 24px}
+            .style2 {font-size: 14px; font-weight: bold; }
+            .style3 {font-size: 14px; font-weight: bold; color: #F26624; }
+            -->
+        </style>
+    <div id="wrapper">
+        <div id="menu">
+            <ul>
+                <li class="current_page_item"><a href="/StopGuessApp/CloudHome">Cloud Server</a>
+                </li>
+                <li><a href="/StopGuessApp/CloudLogout/">Logout</a></li>
+            </ul>
+        </div>
+        <!-- end #menu -->
+        <div id="header">
+            <div id="logo">
+                <h1><img src="{% static "Images/Key2.gif" %}" width="700" height="50"></img></h1>
+            </div>
+            <div id="search">
+                <form method="get" action="">
+                    <fieldset>
+                        <input type="text" name="s" id="search-text" size="15" value="enter keywords here..."/>
+                        <input type="submit" id="search-submit" value="GO"/>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div id="splash">&nbsp;</div>
+        <!-- end #header -->
+        <div id="page">
+            <div id="page-bgtop">
+                <div id="page-bgbtm">
+                    <div id="content">
+                        <div class="post">
+                            <h2 class="title"><a href="#">Files With Public Key</a></h2>
+                            <div class="entry">
+                                <p>&nbsp;</p>
+                                <table width="575" border="1.5" align="center" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td width="50" height="30">
+                                            <div align="center" class="style2"><span class="style3"> ID </span></div>
+                                        </td>
+                                        <td width="175">
+                                            <div align="center" class="style2"><span class="style3">Data Sender</span></div>
+                                        </td>
+                                        <td width="175">
+                                            <div align="center" class="style2"><span class="style3">File Name </span></div>
+                                        </td>
+                                        <td width="175">
+                                            <div align="center" class="style2"><span class="style3">Public Key </span></div>
+                                        </td>
+                                    </tr>
+                                    {% if askQuery %}
+                                        {% for row in askQuery %}
+                                            <tr>
+                                                <td height="28">
+                                                    <div align="center">{{ row.id }}</div>
+                                                </td>
+                                                <td>
+                                                    <div align="center">{{ row.User }}</div>
+                                                </td>
+                                                <td>
+                                                    <div align="center">{{ row.FileName }}</div>
+                                                </td>
+                                                <td>
+                                                    <div align="center"> {{ row.PublicKey }}</div>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% endif %}
+                                </table>
+                                <p>&nbsp;</p>
+                                <p align="right"><a href="/StopGuessApp/CloudHome">Back</a></p>
+                            </div>
+                        </div>
+                        <div style="clear: both;">&nbsp;</div>
+                    </div>
+                    <!-- end #content -->
+                    <div id="sidebar">
+                        <ul>
+                            <li></li>
+                            <li>
+                                <h2>Menu</h2>
+                                <ul>
+                                    <li><a href="/StopGuessApp/CloudHome">Home</a></li>
+                                    <li><a href="/StopGuessApp/CloudViewReceiver">View Receiver</a></li>
+                                    <li><a href="/StopGuessApp/CloudSenderFiles">Sender Files</a></li>
+                                    <li><a href="/StopGuessApp/CloudViewAttackers">View Attackers</a></li>
+                                    <li><a href="/StopGuessApp/CloudPublicKeyPermission">Public Key Permission</a></li>
+                                    <li><a href="/StopGuessApp/CloudShareSecretKey">Share Secret Key</a></li>
+                                    <li><a href="/StopGuessApp/CloudAttackersGraph">Attackers Graph</a></li>
+                                    <li><a href="/StopGuessApp/CloudLogout/">Logout</a></li>
+                                </ul>
+                            </li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <!-- end #sidebar -->
+                    <div style="clear: both;">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+        <!-- end #page -->
+    </div>
+    <div id="footer-wrapper">
+        <div id="footer">
+            <p>Copyright &copy; {% now "Y" %} StopGuess- A Framework for Public-key Authenticated Encryption with Keyword Search.</p>
+        </div>
+        <!-- end #footer -->
+    </div>
+{% endblock %}

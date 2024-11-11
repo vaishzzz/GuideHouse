@@ -1,0 +1,99 @@
+{% extends "StopGuessApp/base.html" %}
+{% load static %}
+
+{% block title %}Sender Home{% endblock %}
+
+{% block Bodycss %}owner_body{% endblock %}
+
+{% block content %}
+    <style type="text/css">
+            <!--
+            .style1 {font-size: 24px}
+            .style2 {color: #712B77}
+            -->
+        </style>
+    <div id="wrapper">
+        <div id="menu">
+            <ul>
+                <li class="current_page_item"><a href="/StopGuessApp/SenderHome">Data Sender</a>
+                </li>
+                <li><a href="/StopGuessApp/SenderLogout/">Logout</a></li>
+            </ul>
+        </div>
+        <!-- end #menu -->
+        <div id="header">
+            <div id="logo">
+                <h1><img src="{% static "Images/Key2.gif" %}" width="700" height="50"></img></h1>
+            </div>
+            <div id="search">
+                <form method="get" action="">
+                    <fieldset>
+                        <input type="text" name="s" id="search-text" size="15" value="enter keywords here..."/>
+                        <input type="submit" id="search-submit" value="GO"/>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div id="splash">&nbsp;</div>
+        <!-- end #header -->
+        <div id="page">
+            <div id="page-bgtop">
+                <div id="page-bgbtm">
+                    <div id="content">
+                        <div class="post">
+                            {% if request.session %}
+                                <h2 class="title"><a href="#">Welcome <b
+                                        style="text-transform: capitalize">{{ sessionSender }}</b> </a></h2>
+                            {% endif %}
+                            <div class="sidebar clear">
+                                <div class="Semisidebar clear">
+                                    {% if regSender %}
+                                        {% for Sender in regSender %}
+                                            <img style="margin:2% auto auto 2%;border:3px solid black;border-radius:20px;width:250px;height:220px"
+                                                 src="{{ Sender.ProfileImg }}">
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="entry">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shared key generation (SKG). This module is used to generate a keypair for users and a shared key between two parties, that is, any two users could generate a shared key by using their own secret key and the other party’s public key.
+                                For the security of the SKG, we need the shared key to be indistinguishable from a random choice in the key-space, which prevents an adversary from generating a shared key without the corresponding secret key.<br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StopGuess combines the above two modules to build PAEKS in a modular and concise manner. The basic idea of StopGuess is to combine a keyword and a shared key into one message, and then an equality test on the message will authenticate the shared key and test the keyword at the same time.
+                                In detail, the sender and the receiver first separately generate a message which is a combination of the shared key and the keyword, then they generate a ciphertext and a trapdoor, respectively, based on their respective message.<br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Finally, the PET module that runs on the server determines whether the ciphertext and trapdoor contain the same message. Since we already defined the underlying modules, the rest of the problem is how to combine a keyword and a shared key.
+                                A plausible solution is to take a hash function and program it as a random oracle to ensure the consistency of StopGuess.
+                            </div>
+                        </div>
+                        <div style="clear: both;">&nbsp;</div>
+                    </div>
+                    <!-- end #content -->
+                    <div id="sidebar">
+                        <ul>
+                            <li></li>
+                            <li>
+                                <h2>Menu</h2>
+                                <ul>
+                                    <li><a href="/StopGuessApp/SenderHome">Home</a></li>
+                                    <li><a href="/StopGuessApp/VerifyFiles">Verify Files</a></li>
+                                    <li><a href="/StopGuessApp/UploadFile">Upload Files</a></li>
+                                    <li><a href="/StopGuessApp/ViewFiles">View My Files</a></li>
+                                    <li><a href="/StopGuessApp/SenderLogout/">Logout</a></li>
+                                </ul>
+                            </li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <!-- end #sidebar -->
+                    <div style="clear: both;">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+        <!-- end #page -->
+    </div>
+    <div id="footer-wrapper">
+        <div id="footer">
+            <p>Copyright &copy; {% now "Y" %} StopGuess- A Framework for Public-key Authenticated Encryption with Keyword Search.</p>
+        </div>
+        <!-- end #footer -->
+    </div>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "StopGuessApp/base.html" %}
+{% load static %}
+{% block title %}StopGuess{% endblock %}
+
+    <style type="text/css">
+    <!--
+    .style1 {font-size: 24px}
+    .style2 {color: #712B77}
+    -->
+    </style>
+
+{% block Bodycss %}home_body{% endblock %}
+
+{% block content %}
+
+    <div id="wrapper">
+        <div id="menu">
+            <ul>
+                <li class="current_page_item"><span><a href="/StopGuessApp">Home</a></span></li>
+                <li><a href="/StopGuessApp/SenderLogin">Data Sender</a></li>
+                <li><a href="/StopGuessApp/ReceiverLogin">Data Receiver</a></li>
+                <li><a href="/StopGuessApp/CloudLogin">Cloud Server</a></li>
+            </ul>
+	</div>
+	<!-- end #menu -->
+	<div id="header">
+		<div id="logo">
+                    <h1><img src="{% static "Images/Key2.gif" %}" width="700" height="50"></img></h1>
+            </div>
+            <div id="search">
+                <form method="get" action="">
+                    <fieldset>
+                        <input type="text" name="s" id="search-text" size="15" value="enter keywords here..."/>
+                        <input type="submit" id="search-submit" value="GO"/>
+                    </fieldset>
+                </form>
+            </div>
+	</div>
+	<div id="splash">&nbsp;</div>
+	<!-- end #header -->
+	<div id="page">
+            <div id="page-bgtop">
+                <div id="page-bgbtm">
+                    <div id="content">
+                        <div class="post">
+                            <h2 class="title"><a href="#">Introduction</a></h2>
+                            <div class="entry">
+                                <p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                StopGuess introduces an innovative framework aimed at enhancing the security of cryptographic systems through a sophisticated combination of public-key authentication, honey encryption, and efficient keyword search functionalities.
+                                    This proposed system addresses the vulnerabilities associated with brute-force attacks and unauthorized access attempts, providing a robust defense mechanism against malicious actors attempting to guess encryption keys.
+                                    StopGuess incorporates a robust public-key authentication mechanism to ensure secure communication between parties. This involves the use of asymmetric key pairs for sender and receiver identities, bolstering the overall security posture of the system.
+                                </p>
+                            </div>
+                        </div>
+                        <div style="clear: both;">&nbsp;</div>
+                    </div>
+                    <!-- end #content -->
+                    <div id="sidebar">
+                        <ul>
+                          <li></li>
+                          <li>
+                            <h2>Menu</h2>
+                              <ul>
+                                  <li><a href="/StopGuessApp/SenderLogin">Data Sender</a></li>
+                                  <li><a href="/StopGuessApp/ReceiverLogin">Data Receiver</a></li>
+                                  <li><a href="/StopGuessApp/CloudLogin">Cloud Serve</a></li>
+                              </ul>
+                            </li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <!-- end #sidebar -->
+                    <div style="clear: both;">&nbsp;</div>
+                </div>
+            </div>
+	</div>
+	<!-- end #page -->
+    </div>
+    <div id="footer-wrapper">
+        <div id="footer">
+            <p>Copyright &copy; {% now "Y" %} StopGuess- A Framework for Public-key Authenticated Encryption with Keyword Search.</p>
+        </div>
+        <!-- end #footer -->
+    </div>
+{% endblock %}

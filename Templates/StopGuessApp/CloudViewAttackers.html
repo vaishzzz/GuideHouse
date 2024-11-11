@@ -1,0 +1,114 @@
+{% extends "StopGuessApp/baseCloud.html" %}
+{% load static %}
+
+{% block title %} Cloud View Attackers{% endblock %}
+
+{% block Bodycss %} cloud_body {% endblock %}
+
+{% block content %}
+
+    <style type="text/css">
+            <!--
+            .style1 {font-size: 24px}
+            .style2 {color: #712B77}
+            .style7 {font-size: 14px; font-weight: bold; }
+            .style3 {font-size: 14px; font-weight: bold; color: #c7254e; }
+            -->
+        </style>
+    <div id="wrapper">
+        <div id="menu">
+            <ul>
+                <li class="current_page_item"><a href="/StopGuessApp/CloudHome">Cloud Server</a>
+                </li>
+                <li><a href="/StopGuessApp/CloudLogout/">Logout</a></li>
+            </ul>
+        </div>
+        <!-- end #menu -->
+        <div id="header">
+            <div id="logo">
+                <h1><img src="{% static "Images/Key2.gif" %}" width="700" height="50"></img></h1>
+            </div>
+            <div id="search">
+                <form method="get" action="">
+                    <fieldset>
+                        <input type="text" name="s" id="search-text" size="15" value="enter keywords here..."/>
+                        <input type="submit" id="search-submit" value="GO"/>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div id="splash">&nbsp;</div>
+        <!-- end #header -->
+        <div id="page">
+            <div id="page-bgtop">
+                <div id="page-bgbtm">
+                        <div class="post">
+                            <h2 class="title"><a href="#">View Attackers</a></h2>
+                            <div class="entry">
+                                <p>&nbsp;</p>
+                                <table width="850" border="1.5" align="center" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td width="50" height="30">
+                                            <div align="center" class="style2"><span class="style3"> ID </span></div>
+                                        </td>
+                                        <td width="150">
+                                            <div align="center" class="style2"><span class="style3">User Name</span></div>
+                                        </td>
+                                        <td width="150">
+                                            <div align="center" class="style2"><span class="style3">File Name</span></div>
+                                        </td>
+                                        <td width="200">
+                                            <div align="center" class="style2"><span class="style3">Mismatch Key</span></div>
+                                        </td>
+                                        <td width="150">
+                                            <div align="center" class="style2"><span class="style3">Date &amp; Time</span></div>
+                                        </td>
+                                        <td width="150">
+                                            <div align="center" class="style2"><span class="style3">Attack Type</span></div>
+                                        </td>
+                                    </tr>
+                                    {% if askQuery %}
+                                        {% for row in askQuery %}
+                                            <tr>
+                                                <td height="28">
+                                                    <div align="center">{{ row.id }}</div>
+                                                </td>
+                                                <td>
+                                                    <div align="center">{{ row.User }}</div>
+                                                </td>
+                                                <td>
+                                                    <div align="center">{{ row.FileName }}</div>
+                                                </td>
+                                                <td>
+                                                    <div align="center"> {{ row.AttackKey }}</div>
+                                                </td>
+                                                <td>
+                                                    <div align="center"> {{ row.ADate }}</div>
+                                                </td>
+                                                <td>
+                                                    <div align="center"> {{ row.AttackType }}</div>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% endif %}
+                                </table>
+                                <p>&nbsp;</p>
+                                <p align="right"><a href="/StopGuessApp/CloudHome">Back</a></p>
+                            </div>
+                        </div>
+                        <div style="clear: both;">&nbsp;</div>
+                    </div>
+                    <!-- end #content -->
+                    <!-- end #sidebar -->
+                    <div style="clear: both;">&nbsp;</div>
+            </div>
+        </div>
+        <!-- end #page -->
+    </div>
+    <div id="footer-wrapper">
+        <div id="footer">
+            <p>Copyright &copy; {% now "Y" %} StopGuess- A Framework for Public-key Authenticated Encryption with Keyword Search.</p>
+        </div>
+        <!-- end #footer -->
+    </div>
+{% endblock %}

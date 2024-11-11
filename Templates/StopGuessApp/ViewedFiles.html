@@ -1,0 +1,136 @@
+{% extends "StopGuessApp/base.html" %}
+{% load static %}
+
+{% load ctags %}
+
+{% block title %}View File Details{% endblock %}
+
+{% block Bodycss %}owner_body{% endblock %}
+
+{% block content %}
+    <style type="text/css">
+            <!--
+            .style1 {font-size: 24px}
+            .style2 {color: #712B77}
+            .style21 {font-size: 14px}
+            .style26 {font-size: 12px}
+            .style27 {font-size: 14px; color: #712B77; }
+            -->
+        </style>
+    <div id="wrapper">
+        <div id="menu">
+            <ul>
+                <li class="current_page_item"><a href="/StopGuessApp/SenderHome">Data Sender</a></li>
+                <li><a href="/StopGuessApp/OwnerLogout/">Logout</a></li>
+            </ul>
+        </div>
+        <!-- end #menu -->
+        <div id="header">
+            <div id="logo">
+                <h1><img src="{% static "Images/Key2.gif" %}" width="700" height="50"></img></h1>
+            </div>
+            <div id="search">
+                <form method="get" action="">
+                    <fieldset>
+                        <input type="text" name="s" id="search-text" size="15" value="enter keywords here..."/>
+                        <input type="submit" id="search-submit" value="GO"/>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div id="splash">&nbsp;</div>
+        <!-- end #header -->
+        <div id="page">
+            <div id="page-bgtop">
+                <div id="page-bgbtm">
+                    <div id="content">
+                        <div class="post">
+                            <h2 class="title"><a href="#">View Files</a></h2>
+                            <div class="entry">
+                                <p>&nbsp;</p>
+                                <table width="575" border="1.5" cellpadding="0" cellspacing="0" align="center">
+                                    {% if askQuery %}
+                                        {% for row in askQuery %}
+                                            <tr>
+                                                <td width="170" height="40"><div align="center" class="style21 style2">
+                                                    <div align="left"><strong>&nbsp;ID</strong></div></div></td>
+                                                <td width="400"><label>
+                                                    <input name="txtId" type="text" value="{{ row.id }}" class="box" style="width: 385px;" readonly="true" /></label></td>
+                                            </tr>
+                                            <tr>
+                                                <td height="40"><div align="center" class="style27">
+                                                    <div align="left"><strong>&nbsp;File Name</strong></div></div></td>
+                                                <td><input name="txtfname" type="text" value="{{ row.FileName }}" class="box" style="width: 385px;" readonly="true" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td height="182"><div align="center" class="style27">
+                                                    <div align="left"><strong>&nbsp;File Contents</strong></div></div></td>
+                                                <td><label>
+                                                    {% getcontents row.id  as Contents %}
+                                                    <textarea rows="10" cols="52" name="file_content" class="box" style="width: 385px;" readonly="true">{{ Contents }}</textarea></label></td>
+                                            </tr>
+                                            <tr>
+                                                <td height="40"><div align="center" class="style27">
+                                                    <div align="left"><strong>&nbsp;Keyword</strong></div></div></td>
+                                                <td><input name="txtKeyword" type="text" value="{{ row.Keyword }}" class="box" style="width: 385px;" readonly="true" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td height="40"><div align="center" class="style27">
+                                                    <div align="left"><strong>&nbsp;Secret Key</strong></div></div></td>
+                                                <td><input name="txtKey" type="text" value="{{ row.SecretKey }}" class="box" style="width: 385px;" readonly="true" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td height="40"><div align="center" class="style27">
+                                                    <div align="left"><strong>&nbsp;Trapdoor</strong></div></div></td>
+                                                <td><input name="txtTrapdoor" type="text" value="{{ row.Trapdoor }}" class="box" style="width: 385px;" readonly="true" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td height="40"><div align="center" class="style27">
+                                                    <div align="left"><strong>&nbsp;Date &amp; Time</strong></div></div></td>
+                                                {% getdate row.id  as udate %}
+                                                <td><input name="txtDate" type="text" value="{{ udate }}" class="box" style="width: 385px;" readonly="true" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td height="40"><div align="center" class="style27">
+                                                    <div align="left"><strong>&nbsp;Data Sender</strong></div></div></td>
+                                                <td><input name="txtoname" type="text" value="{{ row.Sender }}" class="box" style="width: 385px;" readonly="true" /></td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% endif %}
+                                </table>
+                                <p align="right">&nbsp;</p>
+                                <p align="right"><a href="/StopGuessApp/ViewFiles">Back</a></p>
+                            </div>
+                        </div>
+                        <div style="clear: both;">&nbsp;</div>
+                    </div>
+                    <!-- end #content -->
+                    <div id="sidebar">
+                        <ul>
+                            <li></li>
+                            <li>
+                                <h2>Menu</h2>
+                                <ul>
+                                    <li><a href="/StopGuessApp/SenderHome">Home</a></li>
+                                    <li><a href="/StopGuessApp/VerifyFiles">Verify Files</a></li>
+                                    <li><a href="/StopGuessApp/UploadFile">Upload Files</a></li>
+                                    <li><a href="/StopGuessApp/SenderLogout/">Logout</a></li>
+                                </ul>
+                            </li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <!-- end #sidebar -->
+                    <div style="clear: both;">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+        <!-- end #page -->
+    </div>
+    <div id="footer-wrapper">
+        <div id="footer">
+            <p>Copyright &copy; {% now "Y" %} StopGuess- A Framework for Public-key Authenticated Encryption with Keyword Search.</p>
+        </div>
+        <!-- end #footer -->
+    </div>
+{% endblock %}

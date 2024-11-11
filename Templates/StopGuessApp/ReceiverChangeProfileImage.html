@@ -1,0 +1,129 @@
+{% extends "StopGuessApp/baseReceiver.html" %}
+{% load static %}
+
+{% block title %} Change Profile Image {% endblock %}
+
+{% block Bodycss %}user_body{% endblock %}
+
+{% block content %}
+    <div id="wrapper">
+        <div id="menu">
+            <ul>
+                <li class="current_page_item"><a href="/StopGuessApp/ReceiverHome">Data Receiver</a>
+                </li>
+                <li><a href="/StopGuessApp/ReceiverLogout/">Logout</a></li>
+            </ul>
+        </div>
+        <!-- end #menu -->
+        <div id="header">
+            <div id="logo">
+                <h1><img src="{% static "Images/Key2.gif" %}" width="700" height="50"></img></h1>
+            </div>
+            <div id="search">
+                <form method="get" action="">
+                    <fieldset>
+                        <input type="text" name="s" id="search-text" size="15" value="enter keywords here..."/>
+                        <input type="submit" id="search-submit" value="GO"/>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div id="splash">&nbsp;</div>
+        <!-- end #header -->
+        <div id="page">
+            <div id="page-bgtop">
+                <div id="page-bgbtm">
+                    <div id="content">
+                        <div class="post">
+                            {% if request.session %}
+                                <h2 class="title"><a href="#">Welcome <b
+                                        style="text-transform: capitalize">{{ sessionUser }}</b> </a></h2>
+                            {% endif %}
+                            <div class="entry">
+
+                                <form action="/StopGuessApp/ReceiverProfileImage/" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <table width="550" height="350" border="1.5" cellpadding="0" cellspacing="0" style="border-collapse: collapse;  margin:10px 10px 10px 10px; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:14px;">
+                                    <tr>
+                                        <td style="text-align: center; height: 50px;"><h1 style="color: #2b542c;"><b>Upload Profile Image</b></h1></td>
+                                    </tr>
+                                        <tr>
+                                            <td><div style="margin:10px 13px 10px 13px;">
+                                            {% if askQuery %}
+                                                {% for User in askQuery %}
+                                                    <div class="text-center"><img id="ProfileImg" class="login-imgs" src="{{ User.ProfileImg }}" height="250px" width="250px"></div>
+                                                {% endfor %}
+                                            {% endif %}
+                                            </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #2c83b0; text-align: center;">
+                                                <div class="col-lg-12 text-center">
+                                                {% if messages %}
+                                                    <div class="message_display">
+                                                        {% for message in messages %}
+                                                            {% if message.tags %}
+                                                                <p align="center" class="{{ message.tags }}">{{ message }}</p>
+                                                                <script>
+                                                                    alert("{{ message }}")
+                                                                </script>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </div>
+                                                {% endif %}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #2c83b0; height: 50px;"><div style="text-align: center;">
+                                                <span>User Profile Image</span> <input type="file" class="box" style="width: 272px;" name="imgFile" id="imgFile" accept="image/jpeg, image/png" onchange="readURL(this);" >
+                                            </div></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: center; height: 50px;"><input type="submit" value="Submit" class="btn btn-info" name="btnChange"></td>
+                                        </tr>
+
+                                </table>
+                                <p>&nbsp;</p>
+                                <p align="right"><a href="/StopGuessApp/ReceiverHome">Back</a></p>
+                            </div>
+                        </div>
+                        <div style="clear: both;">&nbsp;</div>
+                    </div>
+                    <!-- end #content -->
+                    <div id="sidebar">
+                        <ul>
+                            <li></li>
+                            <li>
+                                <h2>Menu</h2>
+                                <ul>
+                                    <li><a href="/StopGuessApp/ReceiverHome">Home</a></li>
+                                    <li><a href="/StopGuessApp/ReceiverProfile">My Profile</a></li>
+                                    <li><a href="/StopGuessApp/ReceiverViewFiles">View Files</a></li>
+                                    <li><a href="/StopGuessApp/ReceiverSearchFiles">Search Files</a></li>
+                                    <li><a href="/StopGuessApp/ReceiverReqPublicKey">Request Public Key</a></li>
+                                    <li><a href="/StopGuessApp/ReceiverResPublicKey">Public Key Response </a></li>
+                                    <li><a href="/StopGuessApp/ReceiverReqSecretKey">Request Secret Key</a></li>
+                                    <li><a href="/StopGuessApp/ReceiverResSecretKey">Secret Key Response</a></li>
+                                    <li><a href="/StopGuessApp/ReceiverDownloadFile">Download File </a></li>
+                                    <li><a href="/StopGuessApp/ReceiverLogout/">Logout</a></li>
+                                </ul>
+                            </li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <!-- end #sidebar -->
+                    <div style="clear: both;">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+        <!-- end #page -->
+    </div>
+    <div id="footer-wrapper">
+        <div id="footer">
+            <p>Copyright &copy; {% now "Y" %} StopGuess- A Framework for Public-key Authenticated Encryption with Keyword Search.</p>
+        </div>
+        <!-- end #footer -->
+    </div>
+{% endblock %}

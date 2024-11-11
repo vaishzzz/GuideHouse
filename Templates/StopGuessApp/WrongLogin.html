@@ -1,0 +1,90 @@
+{% extends "StopGuessApp/base.html" %}
+{% load static %}
+
+{% block title %}Wrong Login{% endblock %}
+
+{% block Bodycss %}owner_body{% endblock %}
+
+{% block content %}
+
+    {% if myMessages %}
+        <script>alert("{{ myMessages }}")</script>
+    {% endif %}
+    <div id="wrapper">
+        <div id="menu">
+            <ul>
+                <li class="current_page_item"><span><a href="/StopGuessApp">Home</a></span></li>
+                <li><a href="/StopGuessApp/SenderLogin">Data Sender</a></li>
+                <li><a href="/StopGuessApp/ReceiverLogin">Data Receiver</a></li>
+                <li><a href="/StopGuessApp/CloudLogin">Cloud Server</a></li>
+            </ul>
+        </div>
+        <!-- end #menu -->
+        <div id="header">
+            <div id="logo">
+                <h1><img src="{% static "Images/Key2.gif" %}" width="700" height="50"></img></h1>
+            </div>
+            <div id="search">
+                <form method="get" action="">
+                    <fieldset>
+                        <input type="text" name="s" id="search-text" size="15" value="enter keywords here..."/>
+                        <input type="submit" id="search-submit" value="GO"/>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div id="splash">&nbsp;</div>
+        <!-- end #header -->
+        <div id="page">
+            <div id="page-bgtop">
+                <div id="page-bgbtm">
+                    <div id="content">
+                        <div class="post">
+                            <h2 class="title"><a href="#">Retry Logging</a></h2>
+                            <div class="entry">
+                                <table width="492" height="172" border="1.5" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFD6D6">
+                                  <tr>
+                                    <td width="637" align="center"><p> <span class="style5">
+                                        <font class="sb4">Sorry</font><br/>
+                                        <font class="sb3">Your Login Failed.</font><br/>
+                                        <font class="sb3">This happens due to - Incorrect Username / Incorrect Password</font><br/>
+                                        <font class="sb3">In case you have forgotten your password,</font><br/>
+                                        <font class="sb3">click here to reenter correct Username or Password on Homepage.</font></span><br/>
+                                        <span class="style6"><font class="sb3"><a href="/StopGuessApp">Click here to Go Back</a></font></span><br />
+                                    </p></td>
+                                  </tr>
+                                </table>
+                                <p align="justify">&nbsp;</p>
+                            </div>
+                        </div>
+                        <div style="clear: both;">&nbsp;</div>
+                    </div>
+                    <!-- end #content -->
+                    <div id="sidebar">
+                        <ul>
+                            <li></li>
+                            <li>
+                                <h2>Menu</h2>
+                                <ul>
+                                    <li><a href="/StopGuessApp/SenderLogin">Data Sender</a></li>
+                                    <li><a href="/StopGuessApp/ReceiverLogin">Data Receiver</a></li>
+                                    <li><a href="/StopGuessApp/CloudLogin">Cloud Server</a></li>
+                                </ul>
+                            </li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <!-- end #sidebar -->
+                    <div style="clear: both;">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+        <!-- end #page -->
+    </div>
+    <div id="footer-wrapper">
+        <div id="footer">
+            <p>Copyright &copy; {% now "Y" %} StopGuess- A Framework for Public-key Authenticated Encryption with Keyword Search.</p>
+        </div>
+        <!-- end #footer -->
+    </div>
+{% endblock %}

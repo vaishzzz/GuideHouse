@@ -1,0 +1,107 @@
+{% extends "StopGuessApp/baseReceiver.html" %}
+{% load static %}
+
+{% block title %}Data Receiver Login{% endblock %}
+
+{% block Bodycss %}user_body{% endblock %}
+
+{% block content %}
+
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags %}
+                <script>alert("{{ message }}")</script>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    <style type="text/css">
+            <!--
+            .style1 {font-size: 24px}
+            .style2 {color: #712B77}
+            -->
+        </style>
+    <div id="wrapper">
+        <div id="menu">
+            <ul>
+                <li><span><a href="/StopGuessApp">Home</a></span></li>
+                <li><a href="/StopGuessApp/SenderLogin">Data Sender</a></li>
+                <li class="current_page_item"><a href="/StopGuessApp/ReceiverLogin">Data Receiver</a></li>
+                <li><a href="/StopGuessApp/CloudLogin">Cloud Server</a></li>
+            </ul>
+        </div>
+        <!-- end #menu -->
+        <div id="header">
+            <div id="logo">
+                <h1><img src="{% static "Images/Key2.gif" %}" width="700" height="50"></img></h1>
+          </div>
+            <div id="search">
+                <form method="get" action="">
+                    <fieldset>
+                        <input type="text" name="s" id="search-text" size="15" value="enter keywords here..." />
+                        <input type="submit" id="search-submit" value="GO" />
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div id="splash">&nbsp;</div>
+        <!-- end #header -->
+        <div id="page">
+            <div id="page-bgtop">
+                <div id="page-bgbtm">
+                    <div id="content">
+                      <div class="post">
+                          <h2 class="title"><a href="#"> &nbsp; &nbsp; &nbsp;Data Receiver Login</a></h2>
+                            <div class="entry">
+                                <form action="/StopGuessApp/ReceiverLogin/" method="post">
+                                    {% csrf_token %}
+                                  <label for="uname"><br/>
+                                        User Name (Required)&nbsp;</label>
+                                    <input type="text" id="userid" name="userid" class="box" style="width: 225px;"/>
+                                    <label for="pwd"><br/><br/>
+                                        Password (Required)&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    <input type="password" id="pass" name="pass" class="box" style="width: 225px;"/>
+                                    <label for="pkey"><br/><br/>
+                                        Public Key (Required)&nbsp;&nbsp;&nbsp;</label>
+                                    <input type="text" id="pkey" name="pkey" class="box" style="width: 225px;"/>
+                                  <p>&nbsp;</p>
+                                  <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                    <input type="submit" value="Login" />&nbsp;
+                                    <input type="reset" value="Reset" />
+                                  </p>
+                                  <p>New Data Receiver Click here to <a href="/StopGuessApp/ReceiverRegister">Register</a></p>
+                                </form>
+                            </div>
+                        </div>
+                        <div style="clear: both;">&nbsp;</div>
+                    </div>
+                    <!-- end #content -->
+                    <div id="sidebar">
+                        <ul>
+                          <li></li>
+                          <li>
+                              <h2>Menu</h2>
+                              <ul>
+                                  <li><a href="/StopGuessApp/SenderLogin">Data Sender</a></li>
+                                  <li><a href="/StopGuessApp/ReceiverLogin">Data Receiver</a></li>
+                                  <li><a href="/StopGuessApp/CloudLogin">Cloud Server</a></li>
+                              </ul>
+                            </li>
+                            <li></li>
+                      </ul>
+                    </div>
+                    <!-- end #sidebar -->
+                    <div style="clear: both;">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+        <!-- end #page -->
+    </div>
+    <div id="footer-wrapper">
+        <div id="footer">
+            <p>Copyright &copy; {% now "Y" %} StopGuess- A Framework for Public-key Authenticated Encryption with Keyword Search.</p>
+        </div>
+        <!-- end #footer -->
+    </div>
+
+{% endblock %}

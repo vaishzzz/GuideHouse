@@ -1,0 +1,115 @@
+{% extends "StopGuessApp/base.html" %}
+{% load static %}
+
+{% block title %}Verified Files{% endblock %}
+
+{% block Bodycss %}owner_body{% endblock %}
+
+{% block content %}
+    <script type="text/javascript">
+        function RecoverFile(filename)
+        {
+            if(confirm('Are Your Sure Verify File?'))
+            {
+                window.location='/StopGuessApp/RecoverFiles/'+filename
+            }
+        }
+    </script>
+    <style type="text/css">
+            <!--
+            .style1 {font-size: 24px}
+            .style2 {color: #3c763d; font-weight: bold;}
+            .style3 {color: #8eadc4; font-size: 20px}
+            .style4 {color: #c7254e; font-size: 24px; }
+            -->
+        </style>
+    <div id="wrapper">
+        <div id="menu">
+            <ul>
+                <li class="current_page_item"><a href="/StopGuessApp/SenderHome">Data Sender</a>
+                </li>
+                <li><a href="/StopGuessApp/SenderLogout/">Logout</a></li>
+            </ul>
+        </div>
+        <!-- end #menu -->
+        <div id="header">
+            <div id="logo">
+                <h1><img src="{% static "Images/Key2.gif" %}" width="700" height="50"></img></h1>
+            </div>
+            <div id="search">
+                <form method="get" action="">
+                    <fieldset>
+                        <input type="text" name="s" id="search-text" size="15" value="enter keywords here..."/>
+                        <input type="submit" id="search-submit" value="GO"/>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div id="splash">&nbsp;</div>
+        <!-- end #header -->
+        <div id="page">
+            <div id="page-bgtop">
+                <div id="page-bgbtm">
+                    <div id="content">
+                        <div class="post">
+                            <h2 class="title"><a href="#">Recover Status</a></h2>
+                            <div class="entry">
+                                    {% if askQuery %}
+                                        {% for row in askQuery %}
+                                            {% if row.KeyStatus == "0" %}
+                                                <p>&nbsp;</p>
+                                                <h3 class="style2">File Is Safe !! </h3>
+                                                <p style="text-align: right;"><br/>
+                                                    <a href="/StopGuessApp/VerifyFiles">Back</a>
+                                                </p>
+                                            {% else %}
+                                                <p>&nbsp; </p>
+                                                <h3 class="style4">File Is Not Safe !! </h3>
+                                                <h3 class="style1"><br/>
+                                                    <a href=javascript:RecoverFile('{{ FileName }}')> Click Here...</a>
+                                                    <span class="style3"><span class="style3"> To Recover File.</span></span>
+                                                </h3>
+			                                    <p style="text-align: right;"><a href="/StopGuessApp/VerifyFiles">Back</a></p>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                        <p>&nbsp;</p>
+                                        <h3 class="style3">File Does Not Exists !! </h3>
+                                        <p style="text-align: right;"><br/>
+                                            <a href="/StopGuessApp/VerifyFiles">Back</a></p>
+                                    {% endif %}
+                                <p>&nbsp;</p>
+                            </div>
+                        </div>
+                        <div style="clear: both;">&nbsp;</div>
+                    </div>
+                    <!-- end #content -->
+                    <div id="sidebar">
+                        <ul>
+                            <li></li>
+                            <li>
+                                <h2>Menu</h2>
+                                <ul>
+                                    <li><a href="/StopGuessApp/SenderHome">Home</a></li>
+                                    <li><a href="/StopGuessApp/UploadFile">Upload Files</a></li>
+                                    <li><a href="/StopGuessApp/ViewFiles">View My Files</a></li>
+                                    <li><a href="/StopGuessApp/SenderLogout/">Logout</a></li>
+                                </ul>
+                            </li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <!-- end #sidebar -->
+                    <div style="clear: both;">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+        <!-- end #page -->
+    </div>
+    <div id="footer-wrapper">
+        <div id="footer">
+            <p>Copyright &copy; {% now "Y" %} StopGuess- A Framework for Public-key Authenticated Encryption with Keyword Search.</p>
+        </div>
+        <!-- end #footer -->
+    </div>
+{% endblock %}

@@ -1,0 +1,119 @@
+{% extends "StopGuessApp/baseReceiver.html" %}
+{% load static %}
+
+{% block title %} Download Search File{% endblock %}
+
+{% block Bodycss %}user_body{% endblock %}
+
+{% block content %}
+    <style type="text/css">
+            <!--
+            .style15 {color: #fff;
+                      font-weight: bold;
+            }
+            .style5 {font-size: 14px; font-weight: bold; }
+            -->
+        </style>
+    <div id="wrapper">
+        <div id="menu">
+            <ul>
+                <li class="current_page_item"><a href="/StopGuessApp/ReceiverHome">Data Receiver</a>
+                </li>
+                <li><a href="/StopGuessApp/ReceiverLogout/">Logout</a></li>
+            </ul>
+        </div>
+        <!-- end #menu -->
+        <div id="header">
+            <div id="logo">
+                <h1><img src="{% static "Images/Key2.gif" %}" width="700" height="50"></img></h1>
+            </div>
+            <div id="search">
+                <form method="get" action="">
+                    <fieldset>
+                        <input type="text" name="s" id="search-text" size="15" value="enter keywords here..."/>
+                        <input type="submit" id="search-submit" value="GO"/>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div id="splash">&nbsp;</div>
+        <!-- end #header -->
+        <div id="page">
+            <div id="page-bgtop">
+                <div id="page-bgbtm">
+                    <div id="content">
+                        <div class="post">
+                            <h2 class="title" style="text-align: center;"><a href="#">Search Files</a></h2>
+                            <div class="entry">
+                                <p>&nbsp;</p>
+                                <form action="/StopGuessApp/ReceiverDownloadSearchFile/" method="post">
+                                    {% csrf_token %}
+                                    <p align="center" class="style15">&nbsp;</p>
+                                    <table width="500" border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse:collapse">
+                                        <tr>
+                                            <td width="223"><span class="style5">Enter File Name </span></td>
+                                            <td width="245"><label>
+                                                <input type="text" name="filename" value="{{ FileName }}" class="box" style="width: 300px;" required="required"/></label></td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td height="34"><span class="style5">Secret Key </span></td>
+                                            <td><input type="text" name="skey" class="box" style="width: 300px;"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                    </table>
+                                    <p align="center" class="style15">&nbsp;</p>
+                                    <p align="center">
+                                        <input type="submit" name="Submit" value="Request Key" />
+                                        <input type="submit" name="Submit2" value="Download" />
+                                    </p>
+                                </form>
+                                <p>&nbsp;</p>
+                                <p align="right"><a href="/StopGuessApp/ReceiverSearchFiles">Back</a></p>
+                            </div>
+                        </div>
+                        <div style="clear: both;">&nbsp;</div>
+                    </div>
+                    <!-- end #content -->
+                    <div id="sidebar">
+                        <ul>
+                            <li></li>
+                            <li>
+                                <h2>Menu</h2>
+                                <ul>
+                                    <li><a href="/StopGuessApp/ReceiverHome">Home</a></li>
+                                    <li><a href="/StopGuessApp/ReceiverProfile">My Profile</a></li>
+                                    <li><a href="/StopGuessApp/ReceiverViewFiles">View Files</a></li>
+                                    <li><a href="/StopGuessApp/ReceiverReqPublicKey">Request Public Key</a></li>
+                                    <li><a href="/StopGuessApp/ReceiverResPublicKey">Public Key Response </a></li>
+                                    <li><a href="/StopGuessApp/ReceiverReqSecretKey">Request Secret Key</a></li>
+                                    <li><a href="/StopGuessApp/ReceiverResSecretKey">Secret Key Response</a></li>
+                                    <li><a href="/StopGuessApp/ReceiverReqCipherKey">Request Cipher Key </a></li>
+                                    <li><a href="/StopGuessApp/ReceiverResCipherKey">Cipher Key Response</a></li>
+                                    <li><a href="/StopGuessApp/ReceiverDownloadFile">Download File </a></li>
+                                    <li><a href="/StopGuessApp/ReceiverLogout/">Logout</a></li>
+                                </ul>
+                            </li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <!-- end #sidebar -->
+                    <div style="clear: both;">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+        <!-- end #page -->
+    </div>
+    <div id="footer-wrapper">
+        <div id="footer">
+            <p>Copyright &copy; {% now "Y" %} StopGuess- A Framework for Public-key Authenticated Encryption with Keyword Search.</p>
+        </div>
+        <!-- end #footer -->
+    </div>
+{% endblock %}

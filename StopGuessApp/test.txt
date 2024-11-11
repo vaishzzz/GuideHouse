@@ -1,0 +1,3 @@
+Cloud-based data storage service has drawn increasing 
+interests from both academic and industry in the recent years due
+to its efficient and low cost management.

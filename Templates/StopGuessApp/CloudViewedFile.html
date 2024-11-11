@@ -1,0 +1,135 @@
+{% extends "StopGuessApp/baseCloud.html" %}
+{% load static %}
+
+{% load ctags %}
+
+{% block title %} View File Information{% endblock %}
+
+{% block Bodycss %} cloud_body {% endblock %}
+
+{% block content %}
+
+    <style type="text/css">
+            <!--
+            .style1 {font-size: 24px; color: #F26624}
+            .style2 {font-size: 14px; font-weight: bold; }
+            .style3 {font-size: 14px; font-weight: bold; color: #712B77; }
+            -->
+        </style>
+    <div id="wrapper">
+        <div id="menu">
+            <ul>
+                <li class="current_page_item"><a href="/StopGuessApp/CloudHome">Cloud Server</a>
+                </li>
+                <li><a href="/StopGuessApp/SenderLogout/">Logout</a></li>
+            </ul>
+        </div>
+        <!-- end #menu -->
+        <div id="header">
+            <div id="logo">
+                <h1><img src="{% static "Images/Key2.gif" %}" width="700" height="50"></img></h1>
+            </div>
+            <div id="search">
+                <form method="get" action="">
+                    <fieldset>
+                        <input type="text" name="s" id="search-text" size="15" value="enter keywords here..."/>
+                        <input type="submit" id="search-submit" value="GO"/>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div id="splash">&nbsp;</div>
+        <!-- end #header -->
+        <div id="page">
+            <div id="page-bgtop">
+                <div id="page-bgbtm">
+                    <div id="content">
+                        <div class="post">
+                            <h2 class="title"><a href="#">View File Details</a></h2>
+                            <div class="entry">
+                                <p>&nbsp;</p>
+                                <table width="575" border="1.5" cellpadding="0" cellspacing="0" align="center">
+                                    {% if askQuery %}
+                                        {% for row in askQuery %}
+                                            <tr>
+                                                <td width="170" height="40"><div align="center" class="style3">
+                                                    <div align="left"><strong>&nbsp;ID</strong></div></div></td>
+                                                <td width="400"><label>
+                                                    <input type="text" name="txtId" value="{{ row.id }}" class="box" style="width: 385px;" readonly="true" /></label></td>
+                                            </tr>
+                                            <tr>
+                                                <td height="40"><div align="center" class="style3">
+                                                    <div align="left"><strong>&nbsp;File Name</strong></div></div></td>
+                                                <td><input type="text" name="txtfname" value="{{ row.FileName }}" class="box" style="width: 385px;" readonly="true" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td height="182"><div align="center" class="style3">
+                                                    <div align="left"><strong>&nbsp;File Contents</strong></div></div></td>
+                                                <td><label>
+                                                    <textarea name="textarea" rows="10" cols="52" class="box" style="width: 385px;" readonly="true">{{ row.FileContent }}</textarea></label></td>
+                                            </tr>
+                                            <tr>
+                                                <td height="40"><div align="center" class="style3">
+                                                    <div align="left"><strong>&nbsp;Keyword</strong></div></div></td>
+                                                <td><input type="text" name="txtKeyword" value="{{ row.Keyword }}" class="box" style="width: 385px;" readonly="true" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td height="40"><div align="center" class="style3">
+                                                    <div align="left"><strong>&nbsp;Trapdoor</strong></div></div></td>
+                                                <td><input type="text" name="txtTrapdoor" value="{{ row.Trapdoor }}" class="box" style="width: 385px;" readonly="true" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td height="40"><div align="center" class="style3">
+                                                    <div align="left"><strong>&nbsp;Date &amp; Time</strong></div></div></td>
+                                                {% getdate row.id  as udate %}
+                                                <td><input type="text" name="txtDate" value="{{ udate }}" class="box" style="width: 385px;" readonly="true" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td height="40"><div align="center" class="style3">
+                                                    <div align="left"><strong>&nbsp;Data Sender</strong></div></div></td>
+                                                <td><input name="txtSender" type="text" value="{{ row.Sender }}" class="box" style="width: 385px;" readonly="true" /></td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% endif %}
+                                </table>
+                                <p>&nbsp;</p>
+                                <p align="right"><a href="/StopGuessApp/CloudSenderFiles">Back</a></p>
+                            </div>
+                        </div>
+                        <div style="clear: both;">&nbsp;</div>
+                    </div>
+                    <!-- end #content -->
+                    <div id="sidebar">
+                        <ul>
+                            <li></li>
+                            <li>
+                                <h2>Menu</h2>
+                                <ul>
+                                    <li><a href="/StopGuessApp/CloudHome">Home</a></li>
+                                    <li><a href="/StopGuessApp/CloudViewSenders">View Sender</a></li>
+                                    <li><a href="/StopGuessApp/CloudViewReceivers">View Receiver</a></li>
+                                    <li><a href="/StopGuessApp/CloudViewAttackers">View Attackers</a></li>
+                                    <li><a href="/StopGuessApp/CloudFilesWithPublicKey">Files With Public Key</a></li>
+                                    <li><a href="/StopGuessApp/CloudPublicKeyPermission">Public Key Permission</a></li>
+                                    <li><a href="/StopGuessApp/CloudShareSecretKey">Share Secret Key</a></li>
+                                    <li><a href="/StopGuessApp/CloudAttackersGraph">Attackers Graph</a></li>
+                                    <li><a href="/StopGuessApp/CloudLogout/">Logout</a></li>
+                                </ul>
+                            </li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <!-- end #sidebar -->
+                    <div style="clear: both;">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+        <!-- end #page -->
+    </div>
+    <div id="footer-wrapper">
+        <div id="footer">
+            <p>Copyright &copy; {% now "Y" %} StopGuess- A Framework for Public-key Authenticated Encryption with Keyword Search.</p>
+        </div>
+        <!-- end #footer -->
+    </div>
+{% endblock %}

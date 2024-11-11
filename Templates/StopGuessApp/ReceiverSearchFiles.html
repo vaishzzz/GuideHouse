@@ -1,0 +1,139 @@
+{% extends "StopGuessApp/baseReceiver.html" %}
+{% load static %}
+{% load ctags %}
+{% block title %} Data Receiver Search Files{% endblock %}
+
+{% block Bodycss %}user_body{% endblock %}
+
+{% block content %}
+    <script type="text/javascript">
+        function ReceiverSearchDownload(filename)
+        {
+            if(confirm('Are Your Sure Download File?'))
+            {
+                window.location='/StopGuessApp/ReceiverSearchFileResult/'+filename
+            }
+        }
+    </script>
+    <style type="text/css">
+            <!--
+            .style1 {font-size: 24px}
+            .style2 {color: #712B77}
+            .style3 {font-size: 14px}
+            .style4 {color: #FF0000}
+            -->
+        </style>
+    <div id="wrapper">
+        <div id="menu">
+            <ul>
+                <li class="current_page_item"><a href="/StopGuessApp/ReceiverHome">Data Receiver</a>
+                </li>
+                <li><a href="/StopGuessApp/ReceiverLogout/">Logout</a></li>
+            </ul>
+        </div>
+        <!-- end #menu -->
+        <div id="header">
+            <div id="logo">
+                <h1><img src="{% static "Images/Key2.gif" %}" width="700" height="50"></img></h1>
+            </div>
+            <div id="search">
+                <form method="get" action="">
+                    <fieldset>
+                        <input type="text" name="s" id="search-text" size="15" value="enter keywords here..."/>
+                        <input type="submit" id="search-submit" value="GO"/>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div id="splash">&nbsp;</div>
+        <!-- end #header -->
+        <div id="page">
+            <div id="page-bgtop">
+                <div id="page-bgbtm">
+                    <div id="content">
+                        <div class="post">
+                            <h2 class="title" style="text-align: center;"><a href="#">Data Receiver Search Files</a></h2>
+                            <div class="entry">
+                                <p>&nbsp;</p>
+                                <table width="550" border="1.5" align="center" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td width="47" height="30">
+                                            <div align="center" class="style2"><span class="style3">File ID</span></div>
+                                        </td>
+                                        <td width="108">
+                                            <div align="center" class="style2"><span class="style3">File Name</span></div>
+                                        </td>
+                                        <td width="123">
+                                            <div align="center" class="style2"><span class="style3">Keyword</span></div>
+                                        </td>
+                                        <td width="116">
+                                            <div align="center" class="style2"><span class="style3">Download</span></div>
+                                        </td>
+                                    </tr>
+                                    {% if askQuery1 %}
+                                        {% for row in askQuery1 %}
+                                            <tr>
+                                                <td height="28">
+                                                    <div align="center">{{ row.id }}</div>
+                                                </td>
+                                                <td>
+                                                    <div align="center">{{ row.FileName }}</div>
+                                                </td>
+                                                <td>
+                                                    <div align="center">{{ row.Keyword }}</div>
+                                                </td>
+                                                <td>
+                                                    <div align="center">
+                                                        <a href=javascript:ReceiverSearchDownload('{{ row.FileName }}')> {{ row.FileName }}</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% endif %}
+                                </table>
+                                {% if mySearch %}
+                                    <P>&nbsp;</P>
+                                    <P>&nbsp;</P>
+                                    <h2 class="style4">File Not Found !!!</h2>
+                                {% endif %}
+                                <p>&nbsp;</p>
+                                <p align="right"><a href="/StopGuessApp/ReceiverSearchFiles">Back</a></p>
+                            </div>
+                        </div>
+                        <div style="clear: both;">&nbsp;</div>
+                    </div>
+                    <!-- end #content -->
+                    <div id="sidebar">
+                        <ul>
+                            <li></li>
+                            <li>
+                                <h2>Menu</h2>
+                                <ul>
+                                    <li><a href="/StopGuessApp/ReceiverHome">Home</a></li>
+                                    <li><a href="/StopGuessApp/ReceiverProfile">My Profile</a></li>
+                                    <li><a href="/StopGuessApp/ReceiverViewFiles">View Files</a></li>
+                                    <li><a href="/StopGuessApp/ReceiverReqPublicKey">Request Public Key</a></li>
+                                    <li><a href="/StopGuessApp/ReceiverResPublicKey">Public Key Response </a></li>
+                                    <li><a href="/StopGuessApp/ReceiverReqSecretKey">Request Secret Key</a></li>
+                                    <li><a href="/StopGuessApp/ReceiverResSecretKey">Secret Key Response</a></li>
+                                    <li><a href="/StopGuessApp/ReceiverDownloadFile">Download File </a></li>
+                                    <li><a href="/StopGuessApp/ReceiverLogout/">Logout</a></li>
+                                </ul>
+                            </li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <!-- end #sidebar -->
+                    <div style="clear: both;">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+        <!-- end #page -->
+    </div>
+    <div id="footer-wrapper">
+        <div id="footer">
+            <p>Copyright &copy; {% now "Y" %} StopGuess- A Framework for Public-key Authenticated Encryption with Keyword Search.</p>
+        </div>
+        <!-- end #footer -->
+    </div>
+{% endblock %}
